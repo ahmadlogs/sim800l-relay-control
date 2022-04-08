@@ -36,6 +36,11 @@ void setup() {
 
   sim800.print("AT+CMGF=1\r"); //SMS text mode
   delay(1000);
+  //delete all sms
+  sim800.println("AT+CMGD=1,4");
+  delay(1000);
+  sim800.println("AT+CMGDA= \"DEL ALL\"");
+  delay(1000);
 }
 
 void loop() {
@@ -83,6 +88,11 @@ void parseData(String buff){
       
       if(senderNumber == PHONE){
         doAction();
+        //delete all sms
+        sim800.println("AT+CMGD=1,4");
+        delay(1000);
+        sim800.println("AT+CMGDA= \"DEL ALL\"");
+        delay(1000);
       }
     }
   //////////////////////////////////////////////////
